@@ -3,21 +3,24 @@ try:
 except ImportError:
     from distutils.core import setup
 
+with open('README.md') as readme_file:
+    readme = readme_file.read()
+
 setup(
-    name='pyami_p',
+    name='py4ami',
     url='https://github.com/petermr/pyami',
-    version='0.0.3',
+    version='0.0.4',
+    description='Semantic Reader of the Scientific Literature.',
     author="Peter Murray-Rust",
-    include_package_data=True,
+    author_email='petermurrayrust@googlemail.com',
     license='Apache2',
     install_requires=[],
-    author_email='petermurrayrust@googlemail.com',
-    long_description=open('README.md').read(),
     zip_safe=False,
     keywords='text and data mining',
     packages=[
         'pyami_m',
-        ],
+    ],
+    package_data={"pyami_m": ['section_templates.json']},
     classifiers=[
         'Development Status :: 0.1 - Alpha',
         'Intended Audience :: Developers',
@@ -28,9 +31,10 @@ setup(
         'Programming Language :: Python :: 3.6',
         'Programming Language :: Python :: 3.8',
     ],
+    include_package_data=True,
     entry_points={
-        "console_script" :
-            ["py4ami=pyami_m.pyamix:main"]
-    }
+        'console_scripts': [
+            'py4ami=pyami_m.pyamix:main',
+        ],
+    },
 )
-
